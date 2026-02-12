@@ -6,13 +6,6 @@ const signupForm = document.getElementById('signupForm');
 const authStatus = document.getElementById('authStatus');
 const messages = document.getElementById('messages');
 
-function ensureApiConfigured() {
-  const isLocalHost = ['localhost', '127.0.0.1'].includes(window.location.hostname);
-  if (!API_BASE_URL && !isLocalHost) {
-    throw new Error('API base URL is not configured. Set window.VOTE_API_BASE_URL in public/config.js to your deployed backend URL.');
-  }
-}
-
 function getToken() {
   return localStorage.getItem(tokenKey);
 }
@@ -28,7 +21,6 @@ function logMessage(message, isError = false) {
 }
 
 async function apiRequest(path, options = {}) {
-  ensureApiConfigured();
   const url = `${API_BASE_URL}${path}`;
   const headers = {
     'Content-Type': 'application/json',
@@ -53,7 +45,6 @@ async function apiRequest(path, options = {}) {
 async function tryAutoLogin() {
   const token = getToken();
   if (!token) return;
-  if (!API_BASE_URL) return;
 
   try {
     const response = await fetch(`${API_BASE_URL}/user/profile`, {

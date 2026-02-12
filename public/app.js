@@ -24,13 +24,6 @@ const refreshDbCandidatesBtn = document.getElementById('refreshDbCandidatesBtn')
 let currentUser = null;
 let voteCountInterval = null;
 
-function ensureApiConfigured() {
-  const isLocalHost = ['localhost', '127.0.0.1'].includes(window.location.hostname);
-  if (!API_BASE_URL && !isLocalHost) {
-    throw new Error('API base URL is not configured. Set window.VOTE_API_BASE_URL in public/config.js to your deployed backend URL.');
-  }
-}
-
 function getToken() {
   return localStorage.getItem(tokenKey);
 }
@@ -54,7 +47,6 @@ function logMessage(message, isError = false) {
 }
 
 async function apiRequest(path, options = {}) {
-  ensureApiConfigured();
   const url = `${API_BASE_URL}${path}`;
   const token = getToken();
   const headers = {
