@@ -126,6 +126,24 @@ Open: `http://localhost:3000`
 
 ---
 
+## Deploying Frontend on GitHub Pages
+
+GitHub Pages serves static files only. This app needs a separately deployed backend API.
+
+1. Deploy backend (`server.js`) on Render/Railway/any Node host.
+2. Set backend env var `CORS_ORIGIN` to your frontend origin (example: `https://YOUR_USERNAME.github.io`).
+3. Update `public/config.js` and set `window.VOTE_API_BASE_URL` to your backend URL.
+
+Example:
+
+```js
+window.VOTE_API_BASE_URL = 'https://your-backend-domain.com';
+```
+
+Without this setup, login/signup requests on GitHub Pages will fail because `/user/*` and `/candidate/*` routes do not exist on GitHub Pages.
+
+---
+
 ## License
 
 ISC

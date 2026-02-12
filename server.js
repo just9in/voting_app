@@ -7,6 +7,43 @@ const db = require('./db');
 
 const bodyParser = require('body-parser'); 
 app.use(bodyParser.json()); // req.body
+
+const defaultCorsOrigins = [
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+    'http://localhost:5500',
+    'http://127.0.0.1:5500'
+];
+
+const corsOriginsFromEnv = (process.env.CORS_ORIGIN || '')
+    .split(',')
+    .map((origin) => origin.trim())
+    .filter(Boolean);
+
+const allowedOrigins = [...new Set([...defaultCorsOrigins, ...corsOriginsFromEnv])];
+
+app.use((req, res, next) => {
+    const origin = req.headers.origin;
+
+    if (!origin || allowedOrigins.includes(origin)) {
+        if (origin) {
+            res.header('Access-Control-Allow-Origin', origin);
+        }
+        res.header('Vary', 'Origin');
+        res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE,OPTIONS');
+        res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
+        res.header('Access-Control-Allow-Credentials', 'true');
+
+        if (req.method === 'OPTIONS') {
+            return res.sendStatus(204);
+        }
+
+        return next();
+    }
+
+    return res.status(403).json({ error: 'Not allowed by CORS' });
+});
+
 app.use(express.static(path.join(__dirname, 'public')));
 const PORT = process.env.PORT || 3000;
 
