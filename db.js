@@ -2,7 +2,9 @@ const mongoose = require('mongoose');
 mongoose.set('bufferCommands', false);
 
 // Define the MongoDB connection URL
-const mongoURL = process.env.MONGODB_URL_LOCAL || process.env.MONGODB_URL || 'mongodb://127.0.0.1:27017/vote';
+const mongoURL = process.env.NODE_ENV === 'production'
+    ? (process.env.MONGODB_URL || process.env.MONGODB_URL_LOCAL || 'mongodb://127.0.0.1:27017/vote')
+    : (process.env.MONGODB_URL_LOCAL || process.env.MONGODB_URL || 'mongodb://127.0.0.1:27017/vote');
 
 // Set up MongoDB connection
 mongoose.connect(mongoURL, {
