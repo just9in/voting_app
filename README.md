@@ -108,11 +108,13 @@ Open: `http://localhost:3000`
 ### Candidate
 - `GET /candidate`
 - `GET /candidate/vote/count`
-- `GET /candidate/vote/:candidateID` (auth required, voter only)
+- `POST /candidate/vote/:candidateID` (auth required, voter only)
 - `POST /candidate` (admin only)
 - `PUT /candidate/:candidateID` (admin only)
 - `DELETE /candidate/:candidateID` (admin only)
 - `GET /candidate/admin/details` (admin only)
+
+> Legacy compatibility: `GET /candidate/vote/:candidateID` is also accepted.
 
 ---
 
