@@ -1,5 +1,4 @@
 const tokenKey = 'vote_app_token';
-const API_BASE_URL = (window.VOTE_API_BASE_URL || '').replace(/\/$/, '');
 
 const authStatus = document.getElementById('authStatus');
 const logoutBtn = document.getElementById('logoutBtn');
@@ -37,7 +36,7 @@ function clearToken() {
 }
 
 function goToLogin() {
-  window.location.href = 'index.html';
+  window.location.href = '/';
 }
 
 function logMessage(message, isError = false) {
@@ -47,7 +46,6 @@ function logMessage(message, isError = false) {
 }
 
 async function apiRequest(path, options = {}) {
-  const url = `${API_BASE_URL}${path}`;
   const token = getToken();
   const headers = {
     'Content-Type': 'application/json',
@@ -58,7 +56,7 @@ async function apiRequest(path, options = {}) {
     headers.Authorization = `Bearer ${token}`;
   }
 
-  const response = await fetch(url, {
+  const response = await fetch(path, {
     ...options,
     headers
   });
