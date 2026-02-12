@@ -1,4 +1,5 @@
 const tokenKey = 'vote_app_token';
+const API_BASE_URL = (window.VOTE_API_BASE_URL || '').replace(/\/$/, '');
 
 const loginForm = document.getElementById('loginForm');
 const signupForm = document.getElementById('signupForm');
@@ -20,12 +21,13 @@ function logMessage(message, isError = false) {
 }
 
 async function apiRequest(path, options = {}) {
+  const url = `${API_BASE_URL}${path}`;
   const headers = {
     'Content-Type': 'application/json',
     ...(options.headers || {})
   };
 
-  const response = await fetch(path, {
+  const response = await fetch(url, {
     ...options,
     headers
   });
@@ -45,12 +47,12 @@ async function tryAutoLogin() {
   if (!token) return;
 
   try {
-    const response = await fetch('/user/profile', {
+    const response = await fetch(`${API_BASE_URL}/user/profile`, {
       headers: { Authorization: `Bearer ${token}` }
     });
 
     if (response.ok) {
-      window.location.href = '/main.html';
+      window.location.href = 'main.html';
     }
   } catch (_) {
   }
@@ -70,7 +72,7 @@ loginForm.addEventListener('submit', async (event) => {
     setToken(result.token);
     authStatus.textContent = 'Login successful. Redirecting...';
     loginForm.reset();
-    window.location.href = '/main.html';
+    window.location.href = 'main.html';
   } catch (error) {
     logMessage(error.message, true);
   }
@@ -92,7 +94,7 @@ signupForm.addEventListener('submit', async (event) => {
       setToken(result.token);
       authStatus.textContent = 'Signup successful. Redirecting...';
       signupForm.reset();
-      window.location.href = '/main.html';
+      window.location.href = 'main.html';
       return;
     }
 
