@@ -120,9 +120,11 @@ router.get('/vote/count', async (req, res) => {
     }
 });
 
-const recordVote = async (req, res) => {
+// let's start voting
+router.get('/vote/:candidateID', jwtAuthMiddleware, async (req, res)=>{
     // no admin can vote
     // user can only vote once
+    
     const candidateID = req.params.candidateID;
     const userId = req.user.id;
 
@@ -158,11 +160,7 @@ const recordVote = async (req, res) => {
         console.log(err);
         return res.status(500).json({error: 'Internal Server Error'});
     }
-};
-
-// let's start voting
-router.post('/vote/:candidateID', jwtAuthMiddleware, recordVote);
-router.get('/vote/:candidateID', jwtAuthMiddleware, recordVote);
+});
 
 // Get List of all candidates with only name and party fields
 router.get('/', async (req, res) => {

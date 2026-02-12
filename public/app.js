@@ -176,9 +176,7 @@ async function loadCandidates() {
       voteButton.textContent = 'Vote';
       voteButton.addEventListener('click', async () => {
         try {
-          await apiRequest(`/candidate/vote/${candidate._id}`, {
-            method: 'POST'
-          });
+          await apiRequest(`/candidate/vote/${candidate._id}`);
           logMessage(`Vote submitted for ${candidate.name}`);
           await Promise.all([loadCandidates(), loadVoteCount(), loadProfile()]);
         } catch (error) {
