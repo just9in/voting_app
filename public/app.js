@@ -1,5 +1,7 @@
 const tokenKey = 'vote_app_token';
-const API_BASE_URL = (window.VOTE_API_BASE_URL || '').replace(/\/$/, '');
+const isLocalHost = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+const defaultApiBaseUrl = isLocalHost ? 'http://localhost:3000' : 'https://votingappbackend-rose.vercel.app';
+const API_BASE_URL = (window.VOTE_API_BASE_URL || defaultApiBaseUrl).replace(/\/$/, '');
 
 const authStatus = document.getElementById('authStatus');
 const logoutBtn = document.getElementById('logoutBtn');
@@ -25,7 +27,6 @@ let currentUser = null;
 let voteCountInterval = null;
 
 function ensureApiConfigured() {
-  const isLocalHost = ['localhost', '127.0.0.1'].includes(window.location.hostname);
   if (!API_BASE_URL && !isLocalHost) {
     throw new Error('API base URL is not configured. Set window.VOTE_API_BASE_URL in public/config.js to your deployed backend URL.');
   }
