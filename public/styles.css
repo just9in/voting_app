@@ -1,0 +1,120 @@
+:root {
+  color-scheme: light;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f4f6f8;
+  color: #1f2937;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+  display: grid;
+  gap: 14px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #d5dbe1;
+  border-radius: 10px;
+  padding: 14px;
+}
+
+.grid.two {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+form {
+  display: grid;
+  gap: 10px;
+}
+
+.inline-form {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #ebeff3;
+}
+
+label {
+  display: grid;
+  gap: 4px;
+  font-size: 14px;
+}
+
+input, select, button {
+  padding: 10px;
+  border: 1px solid #c5ced8;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+button {
+  background: #1d4ed8;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #1e40af;
+}
+
+button.danger {
+  background: #b91c1c;
+}
+
+button.danger:hover {
+  background: #991b1b;
+}
+
+.list {
+  display: grid;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.session-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#messages {
+  margin: 0;
+  white-space: pre-wrap;
+  min-height: 60px;
+  max-height: 220px;
+  overflow: auto;
+  background: #0f172a;
+  color: #e2e8f0;
+  border-radius: 8px;
+  padding: 10px;
+}

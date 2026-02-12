@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Voting App - Dashboard</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <h1>Voting Dashboard</h1>
+      <div class="session-actions">
+        <span id="authStatus">Loading...</span>
+        <button id="logoutBtn" class="danger" type="button">Logout</button>
+      </div>
+    </header>
+
+    <section class="card">
+      <h2>My Profile</h2>
+      <div id="profileBox">Loading profile...</div>
+      <form id="passwordForm" class="inline-form">
+        <h3>Change Password</h3>
+        <label>Current Password<input name="currentPassword" type="password" required /></label>
+        <label>New Password<input name="newPassword" type="password" minlength="6" required /></label>
+        <button type="submit">Update Password</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Candidates & Voting</h2>
+      <button id="refreshCandidatesBtn" type="button">Refresh Candidates</button>
+      <div id="candidateList" class="list"></div>
+    </section>
+
+    <section class="card" id="adminSection">
+      <h2>Admin Candidate Management</h2>
+      <form id="candidateCreateForm" class="inline-form">
+        <h3>Add Candidate</h3>
+        <label>Name<input name="name" required /></label>
+        <label>Party<input name="party" required /></label>
+        <label>Age<input name="age" type="number" min="18" required /></label>
+        <button type="submit">Add Candidate</button>
+      </form>
+
+      <form id="candidateUpdateForm" class="inline-form">
+        <h3>Update Candidate</h3>
+        <label>Candidate ID<input name="candidateID" required /></label>
+        <label>Name<input name="name" /></label>
+        <label>Party<input name="party" /></label>
+        <label>Age<input name="age" type="number" min="18" /></label>
+        <button type="submit">Update Candidate</button>
+      </form>
+
+      <form id="candidateDeleteForm" class="inline-form">
+        <h3>Delete Candidate</h3>
+        <label>Candidate ID<input name="candidateID" required /></label>
+        <button class="danger" type="submit">Delete Candidate</button>
+      </form>
+
+      <div class="inline-form">
+        <h3>Database View (Browser)</h3>
+        <div class="session-actions">
+          <button id="refreshUsersBtn" type="button">Show Users</button>
+          <button id="refreshDbCandidatesBtn" type="button">Show Candidates + Votes</button>
+        </div>
+        <h4>Users</h4>
+        <pre id="usersDbView">Admin login required.</pre>
+        <h4>Candidates + Votes</h4>
+        <pre id="candidatesDbView">Admin login required.</pre>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Live Vote Count</h2>
+      <button id="refreshVoteCountBtn" type="button">Refresh Vote Count</button>
+      <div id="voteCountList" class="list"></div>
+    </section>
+
+    <section class="card">
+      <h2>System Messages</h2>
+      <pre id="messages"></pre>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Voting App</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <h1>Voting Application</h1>
+      <span id="authStatus">Please login to continue</span>
+    </header>
+
+    <section class="card">
+      <h2>Login</h2>
+      <form id="loginForm">
+        <label>Aadhar Number<input name="aadharCardNumber" pattern="\d{12}" minlength="12" maxlength="12" required /></label>
+        <label>Password<input name="password" type="password" required /></label>
+        <button type="submit">Login</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Create New Account</h2>
+      <form id="signupForm">
+        <label>Name<input name="name" required /></label>
+        <label>Age<input name="age" type="number" min="18" required /></label>
+        <label>Email<input name="email" type="email" /></label>
+        <label>Mobile<input name="mobile" /></label>
+        <label>Address<input name="address" required /></label>
+        <label>Aadhar Number<input name="aadharCardNumber" pattern="\d{12}" minlength="12" maxlength="12" required /></label>
+        <label>Password<input name="password" type="password" minlength="6" required /></label>
+        <label>Role
+          <select name="role">
+            <option value="voter">Voter</option>
+            <option value="admin">Admin</option>
+          </select>
+        </label>
+        <button type="submit">Sign Up</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Messages</h2>
+      <pre id="messages"></pre>
+    </section>
+  </main>
+
+  <script src="/login.js"></script>
+</body>
+</html>

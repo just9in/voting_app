@@ -1,0 +1,42 @@
+voting application
+WHAT??
+functionality where a user can give vote to a certain set of candidates
+
+model ?
+routes?
+
+use app functionality
+1. use sign in/ sign up
+2. see the list of candidates
+3. vote one of candidates
+4. real time voting data
+5. unique identity like adhar
+6. admin the candidates but cannot vote
+7. user can change password
+8. use can login through password and unique id
+
+
+-----------------------------------------------------------------------------
+
+ROUTES:
+
+user authentication:
+    user signup/POST 
+    use login/POST
+
+voting:
+    candidates/GET
+    vote to candidates/POST
+
+vote count/GET
+
+user profile:
+    change password/PUT
+    profile/GET
+
+Admin management:
+    create candidates/POST
+    update candidates/PUT
+    delete candidates/DELETE
+
+
